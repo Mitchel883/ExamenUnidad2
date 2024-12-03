@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructuras de Datos</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #ea1bb6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .button-container {
+            margin-bottom: 30px;
+        }
+
+        .button-container button {
+            background-color: #0099FF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #0066CC;
+        }
+
+        .content {
+            width: 80%;
+            max-width: 800px;
+            background-color: rgb(241, 245, 248);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(5, 204, 239, 0.1);
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        pre {
+            background-color: rgb(243, 247, 249);
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #ff66b2;
+            font-size: 16px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Estructuras de Datos</h1>
+
+    <div class="button-container">
+        <button onclick="showContent('arbol')">Árbol Binario</button>
+        <button onclick="showContent('listaCircular')">Lista Circular Enlazada</button>
+        <button onclick="showContent('cola')">Cola</button>
+        <button onclick="showContent('pila')">Pila</button>
+        <button onclick="location.reload()">Recargar Página</button>
+    </div>
+
+    <!-- Contenido de cada estructura de datos sin la información del programa -->
+    <div id="arbol" class="content">
+        <h2>Árbol Binario</h2>
+        <p>Un árbol binario es una estructura jerárquica donde cada nodo tiene como máximo dos hijos: un hijo izquierdo y un hijo derecho. Es ampliamente utilizado para representar datos jerárquicos y realizar búsquedas rápidas.</p>
+        <button onclick="showCode('arbol')">Ver Código del Árbol Binario</button>
+    </div>
+
+    <div id="listaCircular" class="content">
+        <h2>Lista Circular Enlazada</h2>
+        <p>Una lista circular es una estructura de datos donde el último nodo apunta al primer nodo, formando un círculo. Esto permite recorrer la lista indefinidamente sin necesidad de saber cuándo termina.</p>
+        <button onclick="showCode('listaCircular')">Ver Código de Lista Circular</button>
+    </div>
+
+    <div id="cola" class="content">
+        <h2>Cola</h2>
+        <p>La cola es una estructura de datos de tipo FIFO (First In, First Out), donde el primer elemento en entrar es el primero en salir. Es útil en escenarios como la gestión de procesos en sistemas operativos o en el manejo de tareas en espera.</p>
+        <button onclick="showCode('cola')">Ver Código de Cola</button>
+    </div>
+
+    <div id="pila" class="content">
+        <h2>Pila</h2>
+        <p>La pila es una estructura de datos de tipo LIFO (Last In, First Out), donde el último elemento en entrar es el primero en salir. Es útil para escenarios como el deshacer operaciones en aplicaciones.</p>
+        <button onclick="showCode('pila')">Ver Código de Pila</button>
+    </div>
+
+    <!-- Aquí se agregan los códigos cuando se haga clic en los botones -->
+    <div id="arbolCode" class="content">
+      <button onclick="recorrerPreorden()">Ejecutar codigo</button>
+        <h2>Código del Árbol Binario</h2>
+        
+        <pre>
+
+  <!-- Sección para interactuar con el árbol binario -->
+  <div id="arbol" class="class="button-container"></div>
+    <h2>Árbol Binario</h2>
+    <!-- Botones para las acciones -->
+    <button onclick="ingresarNumeroArbol()">Ingresar Número</button>
+    <button onclick="eliminarNumeroArbol()">Eliminar Número</button>
+    <button onclick="buscarNumeroArbol()">Buscar Número</button>
+        </div>
+  
+        </pre>
+    </div>
+
+    <div id="listaCircularCode" class="content">
+        <h2>Código de la Lista Circular Enlazada</h2>
+        <h1>prueba</h1>
+        <button onclick="correrListaCircular()">Ejecutar codigo</button>
+        <pre>
+
+class Nodo {
+  constructor(valor) {
+    this.valor = valor;
+    this.siguiente = null;
+  }
+}
+
+class ListaCircular {
+  constructor() {
+    this.primero = null;
+  }
+
+  insertar(valor) {
+    let nuevoNodo = new Nodo(valor);
+    if (!this.primero) {
+      this.primero = nuevoNodo;
+      nuevoNodo.siguiente = this.primero;
+    } else {
+      let temp = this.primero;
+      while (temp.siguiente !== this.primero) {
+        temp = temp.siguiente;
+      }
+      temp.siguiente = nuevoNodo;
+      nuevoNodo.siguiente = this.primero;
+    }
+  }
+
+  recorrer() {
+    if (this.primero === null) return;
+    let temp = this.primero;
+    do {
+      console.log(temp.valor);
+      temp = temp.siguiente;
+    } while (temp !== this.primero);
+  }
+}
+
+let lista = new ListaCircular();
+lista.insertar(1);
+lista.insertar(2);
+lista.insertar(3);
+lista.recorrer();
+        </pre>
+    </div>
+
+    <div id="colaCode" class="content">
+        <h2>Código de la Cola</h2>
+        <h1>prueba</h1>
+        <button onclick="correrCola()">Ejecutar codigo</button>
+        <pre>
+class Cola {
+  constructor() {
+    this.items = [];
+  }
+
+  enqueue(elemento) {
+    this.items.push(elemento);
+  }
+
+  dequeue() {
+    return this.items.shift();
+  }
+
+  verFrente() {
+    return this.items[0];
+  }
+
+  estaVacia() {
+    return this.items.length === 0;
+  }
+}
+
+let cola = new Cola();
+cola.enqueue(1);
+cola.enqueue(2);
+cola.enqueue(3);
+console.log(cola.dequeue());  // 1
+console.log(cola.verFrente());  // 2
+        </pre>
+    </div>
+
+    <div id="pilaCode" class="content">
+        <h2>Código de la Pila</h2>
+        <h1>prueba</h1>
+        <button onclick="correrPila()">Ejecutar codigo</button>
+        <pre>
+class Pila {
+  constructor() {
+    this.items = [];
+  }
+
+  push(elemento) {
+    this.items.push(elemento);
+  }
+
+  pop() {
+    return this.items.pop();
+  }
+
+  verCima() {
+    return this.items[this.items.length - 1];
+  }
+
+  estaVacia() {
+    return this.items.length === 0;
+  }
+}
+
+let pila = new Pila();
+pila.push(1);
+pila.push(2);
+pila.push(3);
+console.log(pila.pop());  // 3
+console.log(pila.verCima());  // 2
+        </pre>
+    </div>
+
+    <script src="js/script.js">
+    
+    </script>
+
+</body>
+</html>
